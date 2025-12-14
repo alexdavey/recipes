@@ -32,7 +32,7 @@ $(document).ready(function() {
       listOfRecipes += '<li>';
     }
 
-    listOfRecipes += '<a href="recipe.php#' + anchor + '">' + name + '</a></li>';
+    listOfRecipes += '<a href="recipe/#' + anchor + '">' + name + '</a></li>';
     prevLetter = firstLetter;
   }
 
@@ -42,4 +42,3 @@ $(document).ready(function() {
   // ...and the list of first-letters for quick nav
   $('#navigation').html(listOfLetters);
 });
-

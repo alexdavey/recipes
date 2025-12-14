@@ -12,6 +12,25 @@ Features:
 * To save your place while scrolling up around on the page, click the step you're on to highlight it; click it again to remove the highlight, or use the left/right arrow keys to advance  
 * Easily customized and code is (mostly) really well annotated 🙃  
 
+## HUGO VERSION (GITHUB PAGES)
+This repo is now Hugo-based (static) so it works on GitHub Pages without PHP.
+
+Local dev:
+* Install Hugo
+* Run `hugo server`
+
+Build:
+* Run `hugo` (outputs to `public/`)
+
+Where things live now:
+* Recipes: `static/recipes/*.md`
+* Images: `static/images/*.jpg`
+* CSS/JS: `static/`
+* Hugo config + options: `hugo.toml`
+
+Deployment:
+* GitHub Pages is set up via `.github/workflows/hugo.yml` (Pages → Build and deployment → GitHub Actions)
+
 
 ## MORE INFO  
 * [Recipe format](#recipe-format)
@@ -114,4 +133,3 @@ The `recipe.php` file also includes some more options you can customize:
 
 ## SUGGESTIONS WELCOME  
 If you have suggestions for improving this project, please let me know! Either [open an issue](https://github.com/jeffThompson/Recipes/issues/new) or send me an email.
-

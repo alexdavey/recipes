@@ -8,11 +8,11 @@ $(document).ready(function() {
   // extract which recipe from url anchor
   let baseFilename = window.location.hash;
   baseFilename = baseFilename.replace('#', '');
-  let filename = 'recipes/' + baseFilename + '.md';
+  let filename = '../recipes/' + baseFilename + '.md';
 
   // if there's a hero image available, load and display
   if (lookForHeroImage) {
-    let src = 'images/' + baseFilename + '.jpg';
+    let src = '../images/' + baseFilename + '.jpg';
     let img = $('<img>').attr('src', src)
       .on('load', function() {
         // if, for various reasons, the image can't be loaded let us know
@@ -55,7 +55,8 @@ $(document).ready(function() {
 
           // change page title too
           let elems = $(section);
-          let pageTitle = elems[0].innerHTML + ' | Recipe Book';
+          let siteTitle = document.title.split('|').pop().trim() || 'Recipe Book';
+          let pageTitle = elems[0].innerHTML + ' | ' + siteTitle;
           $(document).prop('title', pageTitle);
         }
         // for all other pages, get id from regex match
@@ -105,7 +106,7 @@ $(document).ready(function() {
 
       // add some helper links
       let recipeName = $('h1').text().toLowerCase();
-      recipeName = recipeName.replace(' ', '+');
+      recipeName = recipeName.trim().replace(/\s+/g, '+');
       let help = '<h2>help!</h2>';
       help += '<ul>';
       for (let j in helpUrls) {
@@ -132,7 +133,7 @@ $(document).ready(function() {
     // redirect to the main page
     error: function(xhr, status, err) {
       console.log(err);
-      window.location.href = 'index.php';
+      window.location.href = '../';
     }
   });
 
@@ -159,4 +160,3 @@ $(document).ready(function() {
     // e.preventDefault();
   });
 });
-

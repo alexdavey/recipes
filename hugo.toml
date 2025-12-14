@@ -1,0 +1,32 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "Recipe Book"
+
+# Works well for GitHub Pages project sites (subpaths) without needing to
+# hardcode a repo name into baseURL.
+relativeURLs = true
+
+disableKinds = ["RSS", "taxonomy", "term", "sitemap"]
+
+[params]
+yelpLocation = "Bloomfield, NJ"
+lookForHeroImage = true
+shortenURLs = false
+autoUrlSections = ["basedon"]
+
+[[params.helpUrls]]
+label = "Image search"
+url = "https://www.google.com/search?q=<name>&tbm=isch"
+
+[[params.helpUrls]]
+label = "Serious Eats"
+url = "https://www.seriouseats.com/search?q=<name>&site=recipes"
+
+[[params.helpUrls]]
+label = "More recipes"
+url = "https://www.google.com/search?q=<name>+recipe"
+
+[[params.helpUrls]]
+label = "Yelp (takeout pls)"
+url = "https://www.yelp.com/search?find_loc=<loc>&find_desc=<name>"
+
