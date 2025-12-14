@@ -1,6 +1,6 @@
 baseURL = "/"
 languageCode = "en-us"
-title = "Recipe Book"
+title = "Recipes"
 
 disableKinds = ["RSS", "taxonomy", "term", "sitemap"]
 
