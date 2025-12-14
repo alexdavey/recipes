@@ -16,6 +16,14 @@
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,700,700i,900,900i" rel="stylesheet">
     <link href="{{ "stylesheet.css" | relURL }}" rel="stylesheet" type="text/css">
 
+    <link rel="manifest" href="{{ "manifest.webmanifest" | relURL }}">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="{{ .Site.Title }}">
+    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+
     {{ block "head" . }}{{ end }}
   </head>
 
@@ -24,5 +32,9 @@
   </body>
 
   {{ block "scripts" . }}{{ end }}
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register({{ "sw.js" | relURL | safeJSStr }});
+    }
+  </script>
 </html>
-
