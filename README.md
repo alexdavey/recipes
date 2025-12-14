@@ -1,11 +1,6 @@
 # Recipes
 
-Go to ![https://alexdavey.github.io/Recipes](https://alexdavey.github.io/Recipes).
-
-* [Recipe format](#recipe-format)
-* [Adding images](#adding-images)
-* [Other options](#other-options)
-* [Suggestions welcome!](#suggestions-welcome)
+Go to ![https://alexdavey.github.io/recipes](https://alexdavey.github.io/Recipes).
 
 
 ## RECIPE FORMAT  
@@ -83,7 +78,7 @@ To fry:
 ```
 
 ## ADDING IMAGES  
-Thanks to a suggestion from @mpember, if you have a `jpg` image with the same filename as your recipe, it will automatically be added! 
+If you have a `jpg` image with the same filename as your recipe, it will automatically be added. 
 
 For example: `aloo-matar.md` should have an image called `aloo-matar.jpg` in the `images` folder.
 
@@ -92,5 +87,5 @@ You can also include other images in the recipe using Markdown's image syntax: `
 
 ## OTHER OPTIONS  
 * `lookForHeroImage`: on by default, but you can turn it off if you never intend to include hero images  
-* `autoUrlSections`: list of sections in the recepe template where you want raw URLs (ex: www.instagram.com) to be turned into real links. Great for the `Based On` section but not so good if you want to include Markdown-formatted links in other sections  
+* `autoUrlSections`: list of sections in the recipe template where you want raw URLs (ex: www.instagram.com) to be turned into real links. Great for the `Based On` section but not so good if you want to include Markdown-formatted links in other sections  
 * `shortenUrls`: turns a super-long url into just the main domain name (link will still work as normal, just less cluttered). Off by default but exists if you want it
