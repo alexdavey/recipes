@@ -1,7 +1,7 @@
-# Velouté with bleu d'Auvergne
-
-## info  
-- 2-3 servings
+---
+title: "Velouté with bleu d'Auvergne"
+time: "2-3 servings"
+---
 
 ## ingredients
 - 1,2 kg butternut squash
@@ -21,5 +21,5 @@
 ## Notes
 - Ensure that the soup is sufficiently warm so as to melt the cheese placed in it.
 
-## based on  
+## basedon
 - **Recreation of:** *Velouté de courge butternut, bleu d’auvergne*; Boullion Pigalle.

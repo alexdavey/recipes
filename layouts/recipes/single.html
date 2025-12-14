@@ -1,0 +1,86 @@
+{{ define "main" }}
+  {{- $base := .File.BaseFileName -}}
+  {{- $heroPath := printf "static/images/%s.jpg" $base -}}
+  {{- $heroURL := printf "images/%s.jpg" $base | relURL -}}
+
+  {{- $content := .Content -}}
+
+  {{- $ingredients := "" -}}
+  {{- $steps := "" -}}
+  {{- $notes := "" -}}
+  {{- $basedon := "" -}}
+
+  {{- $parts := split $content "<h2" -}}
+  {{- range $i, $p := $parts -}}
+    {{- if gt $i 0 -}}
+      {{- $section := printf "<h2%s" $p -}}
+      {{- $m := findRESubmatch `(?i)id="([^"]+)"` $section 1 -}}
+      {{- if gt (len $m) 0 -}}
+        {{- $id := lower (index (index $m 0) 1) -}}
+        {{- if eq $id "ingredients" -}}{{- $ingredients = $section -}}{{- end -}}
+        {{- if eq $id "steps" -}}{{- $steps = $section -}}{{- end -}}
+        {{- if eq $id "notes" -}}{{- $notes = $section -}}{{- end -}}
+        {{- if or (eq $id "basedon") (eq $id "based-on") -}}{{- $basedon = $section -}}{{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Avoid duplicate IDs: section wrapper already provides them. */ -}}
+  {{- if $ingredients -}}{{- $ingredients = replaceRE `\sid="[^"]+"` `` $ingredients -}}{{- end -}}
+  {{- if $steps -}}{{- $steps = replaceRE `\sid="[^"]+"` `` $steps -}}{{- end -}}
+  {{- if $notes -}}{{- $notes = replaceRE `\sid="[^"]+"` `` $notes -}}{{- end -}}
+  {{- if $basedon -}}{{- $basedon = replaceRE `\sid="[^"]+"` `` $basedon -}}{{- end -}}
+
+  {{- /* Match the legacy styling where parenthetical ingredient notes are lighter. */ -}}
+  {{- if $ingredients -}}
+    {{- $ingredients = replaceRE `\(([^)]+)\)` `<span class="paren">($1)</span>` $ingredients -}}
+  {{- end -}}
+
+  {{- /* Normalize the based-on heading label. */ -}}
+  {{- if $basedon -}}
+    {{- $basedon = replaceRE `(?is)^<h2[^>]*>.*?</h2>` `` $basedon -}}
+  {{- end -}}
+
+  <div id="wrapper" class="recipe">
+    <p id="back">
+      <a href="{{ .Site.Home.RelPermalink }}">
+        <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path>
+        </svg>
+      </a>
+    </p>
+
+    <section id="heroimage">
+      {{- if fileExists $heroPath -}}
+        <img src="{{ $heroURL }}" alt="">
+      {{- end -}}
+    </section>
+
+    <section id="title">
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.subtitle }}<p>{{ . }}</p>{{ end }}
+    </section>
+
+    <section id="info">
+      <h2>info</h2>
+      {{- $time := .Params.time | default "" -}}
+      {{- $makes := .Params.makes | default "" -}}
+      {{- if or $time $makes -}}
+        <ul>
+          {{- if $time -}}<li><span id="time">TIME </span>{{ $time }}</li>{{- end -}}
+          {{- if $makes -}}<li><span id="makes">MAKES </span>{{ $makes }}</li>{{- end -}}
+        </ul>
+      {{- end -}}
+    </section>
+
+    {{- if $ingredients -}}<section id="ingredients">{{ $ingredients | safeHTML }}</section>{{- end -}}
+    {{- if $steps -}}<section id="steps">{{ $steps | safeHTML }}</section>{{- end -}}
+    <hr />
+    {{- if $notes -}}<section id="notes">{{ $notes | safeHTML }}</section>{{- end -}}
+    {{- if $basedon -}}<section id="basedon"><h2>based on</h2>{{ $basedon | safeHTML }}</section>{{- end -}}
+  </div>
+{{ end }}
+
+{{ define "scripts" }}
+  <script src="{{ "recipe-steps.js" | relURL }}"></script>
+{{ end }}

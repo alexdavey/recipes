@@ -1,10 +1,6 @@
 baseURL = "/"
 languageCode = "en-us"
-title = "Recipes"
+title = "Recipe Book"
 
 disableKinds = ["RSS", "taxonomy", "term", "sitemap"]
-
-[params]
-lookForHeroImage = true
-shortenURLs = false
-autoUrlSections = ["basedon"]
+cleanDestinationDir = true

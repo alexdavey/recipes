@@ -1,5 +1,0 @@
----
-title: "Recipe"
-layout: "recipe"
----
-

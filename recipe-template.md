@@ -1,9 +1,9 @@
-# TITLE
-Optional subheader
-
-## info  
-* About XXX minutes  
-* XXX servings  
+---
+title: "TITLE"
+subtitle: "Optional subheader"
+time: "About XXX minutes"
+makes: "XXX servings"
+---
 
 ## ingredients
 * 
@@ -14,6 +14,5 @@ Optional subheader
 ## notes  
 * 
 
-## based on  
-* 
-
+## basedon
+* url to where the recipe came from

@@ -1,7 +1,6 @@
-# Pasta e Ceci
-
-## Info
-3 portions
+---
+title: "Pasta e Ceci"
+---
 
 ## Ingredients
 - 2 onion, minced as finely as possible

@@ -1,5 +1,5 @@
 {{ define "main" }}
-  {{- $pages := (where site.RegularPages "Section" "recipes").ByTitle -}}
+  {{- $pages := .Pages.ByTitle -}}
   {{- $letters := slice -}}
   {{- $prevLetter := "" -}}
   {{- range $pages -}}
@@ -34,10 +34,6 @@
         {{- end -}}
       </ul>
     </section>
-
-    <!-- <section id="footer">
-         <ul>
-         </ul>
-         </section> -->
   </div>
 {{ end }}
+
