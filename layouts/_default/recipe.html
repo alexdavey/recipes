@@ -1,0 +1,52 @@
+{{ define "head" }}
+  <script>
+    let yelpLocation = {{ .Site.Params.yelpLocation | default "Bloomfield, NJ" | jsonify | safeJS }};
+
+    let helpUrls = {{ .Site.Params.helpUrls | default (slice) | jsonify | safeJS }};
+    helpUrls = helpUrls.map(function(item) {
+      if (typeof item.url === "string" && item.url.includes("<loc>")) {
+        return { label: item.label, url: item.url.replace("<loc>", encodeURIComponent(yelpLocation)) };
+      }
+      return item;
+    });
+
+    let lookForHeroImage = {{ .Site.Params.lookForHeroImage | default true }};
+    let autoUrlSections = {{ .Site.Params.autoUrlSections | default (slice "basedon") | jsonify | safeJS }};
+    let shortenURLs = {{ .Site.Params.shortenURLs | default false }};
+  </script>
+
+  <script src="https://cdn.rawgit.com/showdownjs/showdown/1.9.0/dist/showdown.min.js"></script>
+
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous">
+  </script>
+{{ end }}
+
+{{ define "main" }}
+  <div id="wrapper" class="recipe">
+    <p id="back">
+      <a href="{{ .Site.Home.RelPermalink }}">
+        <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path>
+        </svg>
+      </a>
+    </p>
+
+    <section id="heroimage"></section>
+    <section id="title"></section>
+    <section id="info"></section>
+    <section id="ingredients"></section>
+    <section id="steps"></section>
+    <hr />
+    <section id="notes"></section>
+    <section id="help"></section>
+    <section id="basedon"></section>
+  </div>
+{{ end }}
+
+{{ define "scripts" }}
+  <script src="{{ "utils.js" | relURL }}"></script>
+  <script src="{{ "create-recipe.js" | relURL }}"></script>
+{{ end }}
