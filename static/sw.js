@@ -1,7 +1,7 @@
 /* Minimal app-shell service worker for offline-ish use.
    Keep this conservative to avoid surprising caching behavior. */
 
-const CACHE_NAME = "recipe-book-v1";
+const CACHE_NAME = "recipe-book-v2";
 
 function urlFromScope(relativePath) {
   return new URL(relativePath, self.registration.scope).toString();
