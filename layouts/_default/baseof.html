@@ -34,7 +34,10 @@
   {{ block "scripts" . }}{{ end }}
   <script>
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register({{ "sw.js" | relURL | safeJSStr }});
+      navigator.serviceWorker
+        .register({{ "sw.js" | relURL | safeJSStr }}, { updateViaCache: "none" })
+        .then((reg) => reg.update())
+        .catch(() => {});
     }
   </script>
 </html>
